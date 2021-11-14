@@ -16,29 +16,58 @@ namespace cse210_batter_csharp
             // Bricks
             cast["bricks"] = new List<Actor>();
 
-            Brick b1 = new Brick();
-            Point p1 = new Point(10, 10);
-            b1.SetPosition(p1);
+            // Brick b1 = new Brick();
+            // Point p1 = new Point(10, 10);
+            // b1.SetPosition(p1);
+            // b1.SetImage(Constants.IMAGE_BRICK);
+            // b1.SetWidth(Constants.BRICK_WIDTH);
+            // b1.SetHeight(Constants.BRICK_HEIGHT);
+            // cast["bricks"].Add(b1);
 
+            // Brick b2 = new Brick();
+            // Point p2 = new Point(100, 10);
+            // b2.SetPosition(p2);
+            // b2.SetImage(Constants.IMAGE_BRICK);
+            // b2.SetWidth(Constants.BRICK_WIDTH);
+            // b2.SetHeight(Constants.BRICK_HEIGHT);
+            // cast["bricks"].Add(b2);
 
-            Brick b2 = new Brick();
-            Point p2 = new Point(100, 10);
-            b2.SetPosition(p2);
+            // Brick b3 = new Brick();
+            // Point p3 = new Point(200, 10);
+            // b3.SetPosition(p3); 
+            // b3.SetImage(Constants.IMAGE_BRICK);
+            // b3.SetWidth(Constants.BRICK_WIDTH);
+            // b3.SetHeight(Constants.BRICK_HEIGHT);
+            // cast["bricks"].Add(b3);
 
-            Brick b3 = new Brick();
-            Point p3 = new Point(200, 10);
-            b3.SetPosition(p3); 
-
-            List<Brick> bricks = new List<Brick>();
-            bricks.Add(b1);
-            bricks.Add(b2);
-            bricks.Add(b3);
-
-            foreach (Brick b in bricks)
+            for (int x = 0; x < Constants.MAX_X; x++)
             {
-                b.GetPosition(); //doesn't do anything
-                Console.WriteLine($"{b}: ({b.GetX()}, {b.GetY()})");
+                for (int y = 0; y < Constants.MAX_Y; y++)
+                {
+                    Brick b = new Brick();
+                    Point p = new Point(x, y);
+                    b.SetPosition(p);
+                    b.SetImage(Constants.IMAGE_BRICK);
+                    b.SetWidth(Constants.BRICK_WIDTH);
+                    b.SetHeight(Constants.BRICK_HEIGHT);
+                    cast["bricks"].Add(b);
+                }
             }
+
+            ///////////////////////////
+            // NOT RELEVANT TO MAIN PROGRAM
+            //
+            // List<Brick> bricks = new List<Brick>();
+            // bricks.Add(b1);
+            // bricks.Add(b2);
+            // bricks.Add(b3);
+
+            // foreach (Brick b in bricks)
+            // {
+            //     b.GetPosition(); //doesn't do anything
+            //     Console.WriteLine($"({b.GetX()}, {b.GetY()})"); //adding "{b}:" changes output but IDK what it means
+            // }
+            ///////////////////////////
 
             // The Ball (or balls if desired)
             cast["balls"] = new List<Actor>();
