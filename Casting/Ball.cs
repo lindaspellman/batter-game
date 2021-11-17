@@ -12,13 +12,17 @@ namespace cse210_batter_csharp
     /// Stereotype:
     ///     
     /// </summary>
-    public class Brick : Actor 
+    public class Ball : Actor 
     {
-        public Brick()
+        public Ball()
         {
-            SetImage(Constants.IMAGE_BRICK);
-            SetWidth(Constants.BRICK_WIDTH);
-            SetHeight(Constants.BRICK_HEIGHT);
+            SetImage(Constants.IMAGE_BALL);
+            SetWidth(Constants.BALL_WIDTH);
+            SetHeight(Constants.BALL_WIDTH);
+
+            Point velocity = new Point(4, 4);
+            SetVelocity(velocity);
         }
+
     }
 }
