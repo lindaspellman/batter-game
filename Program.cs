@@ -17,16 +17,28 @@ namespace cse210_batter_csharp
 
             cast["bricks"] = new List<Actor>();
 
-            for (int x = 1; x < 10; x++)
+             for(int y = 0; y < 120; y+=(Constants.BRICK_HEIGHT + Constants.BRICK_SPACE))
             {
-                for (int y = 0; y < 5; y++)
+                for (int x = Constants.BRICK_SPACE; x < 760; x+=(Constants.BRICK_WIDTH + Constants.BRICK_SPACE))
                 {
-                    Brick b = new Brick();
-                    Point brickPoint = new Point(x * 75, y * 50);
-                    b.SetPosition(brickPoint);
-                    cast["bricks"].Add(b);
+                    Brick _brick = new Brick();
+                    Point _point = new Point(x, y);
+                    _brick.SetPosition(_point);
+ 
+                    cast["bricks"].Add(_brick);
                 }
             }
+
+            // for (int y = 0; y < 5; y++)
+            // {
+            //     for (int x = 1; x < 10; x++)
+            //     {
+            //         Brick b = new Brick();
+            //         Point brickPoint = new Point(x * 75, y * 50);
+            //         b.SetPosition(brickPoint);
+            //         cast["bricks"].Add(b);
+            //     }
+            // }
 
             // The Ball (or balls if desired)
 
@@ -41,6 +53,8 @@ namespace cse210_batter_csharp
             cast["paddle"] = new List<Actor>();
 
             // TODO: Add your paddle here
+            Paddle paddle = new Paddle();
+            cast["paddle"].Add(paddle);
 
             // Create the script
             Dictionary<string, List<Action>> script = new Dictionary<string, List<Action>>();
@@ -60,6 +74,15 @@ namespace cse210_batter_csharp
             // TODO: Add additional actions here to handle the input, move the actors, handle collisions, etc.
             MoveActorsAction moveActorsAction = new MoveActorsAction();
             script["update"].Add(moveActorsAction);
+
+            HandleOffScreenAction handleOffScreenAction = new HandleOffScreenAction();
+            script["update"].Add(handleOffScreenAction);
+
+            ControlActorsAction controlActorsAction = new ControlActorsAction(inputService);
+            script["input"].Add(controlActorsAction);
+
+            HandleCollisionsAction handleCollisionsAction = new HandleCollisionsAction(physicsService);
+            script["update"].Add(handleCollisionsAction);
 
             // Start up the game
             outputService.OpenWindow(Constants.MAX_X, Constants.MAX_Y, "Batter", Constants.FRAME_RATE);
